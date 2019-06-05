@@ -2,7 +2,6 @@ package gui;
 
 import java.util.Stack;
 
-import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
 import util.Calc;
@@ -30,12 +29,12 @@ public class EventHandler {
 			throw new Exception("OPERATOR EXCEPTION : the number of operator is too large.");
 		}
 		else {
-			String[] expressionArray = this.expressionStack.toArray(new String[this.expressionStack.size()]);
+			String[] expressionArray = expressionStack.toArray(new String[expressionStack.size()]);
 			String result = Calc.calculate(expressionArray);
 			
 			this.calcGraphicPanel.setResult(result);
 			
-			this.expressionStack.removeAllElements();
+			expressionStack.removeAllElements();
 			numberCnt = 0;
 			operatorCnt = 0;
 			
@@ -44,7 +43,7 @@ public class EventHandler {
 	}
 	
 	private void doClearEvent(String s) {
-		this.expressionStack.removeAllElements();
+		expressionStack.removeAllElements();
 		numberCnt = 0;
 		operatorCnt = 0;
 		
@@ -53,10 +52,10 @@ public class EventHandler {
 	
 	private void doBackspaceEvent(String s) {
 		if(this.calcGraphicPanel.isResultEmpty()) {
-			if(this.expressionStack.empty()) { //if empty, DO NOTHING
+			if(expressionStack.empty()) { //if empty, DO NOTHING
 				return;
 			}
-			String ss = this.expressionStack.pop();
+			String ss = expressionStack.pop();
 			if(util.Calc.isNumeric(ss)) { //check is it number
 				numberCnt--;
 			}
@@ -64,7 +63,7 @@ public class EventHandler {
 				operatorCnt--;
 			}
 			
-			this.calcGraphicPanel.setExpressionByStack(this.expressionStack);
+			this.calcGraphicPanel.setExpressionByStack(expressionStack);
 		}
 		else {
 			
@@ -80,10 +79,10 @@ public class EventHandler {
 		Double.parseDouble(number); 
 		
 		//if it's numeric..
-		this.expressionStack.add(this.calcGraphicPanel.getResult());
+		expressionStack.add(this.calcGraphicPanel.getResult());
 		numberCnt++;
 		
-		this.calcGraphicPanel.setExpressionByStack(this.expressionStack);
+		this.calcGraphicPanel.setExpressionByStack(expressionStack);
 		this.calcGraphicPanel.clearResult();
 	}
 	
@@ -102,20 +101,20 @@ public class EventHandler {
 				throw new Exception("OPERATOR EXCEPTION : operator needs 2 operands in leftside.");
 			}
 			//operator clicked AFTER space
-			this.expressionStack.add(op);
+			expressionStack.add(op);
 			operatorCnt++;
 			
-			this.calcGraphicPanel.setExpressionByStack(this.expressionStack);
+			this.calcGraphicPanel.setExpressionByStack(expressionStack);
 		}
 		else {//operator clicked BEFORE space 
 			if(numberCnt-operatorCnt < 1) {
 				throw new Exception("OPERATOR EXCEPTION : operator needs 2 operands in leftside.");
 			}
 			doSpaceEvent(s);
-			this.expressionStack.add(op);
+			expressionStack.add(op);
 			operatorCnt++;
 			
-			this.calcGraphicPanel.setExpressionByStack(this.expressionStack);
+			this.calcGraphicPanel.setExpressionByStack(expressionStack);
 			this.calcGraphicPanel.clearResult();
 		}
 	}

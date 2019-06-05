@@ -1,16 +1,14 @@
 package gui;
 
-import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.GridLayout;
 import java.awt.Panel;
 import java.util.Stack;
 
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
 
 public class CalcGraphicPanel extends JPanel implements GraphicPanel{
 	private JLabel expressionLabel = new JLabel();

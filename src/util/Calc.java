@@ -1,6 +1,5 @@
 package util;
 
-import java.util.ArrayList;
 import java.util.Stack;
 
 public class Calc {
@@ -43,7 +42,7 @@ public class Calc {
 	}
 	
 	public static String calculate(String[] array) {
-		Stack stack = new Stack();
+		Stack<String> stack = new Stack<String>();
 		for(String s : array) {
 			if(isNumeric(s)) {
 				stack.push(s);

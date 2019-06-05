@@ -1,15 +1,12 @@
 package gui;
 
-import java.awt.Color;
-import java.awt.GridLayout;
 import java.awt.Panel;
-import java.awt.event.ActionListener;
-
 import javax.swing.*;
+
 
 public class CalcFrame extends JFrame {
 	public CalcFrame() {
-		//frame init
+		//frame
 		super("postfix Calculator");
 		this.setSize(400,350);
 		this.setResizable(false);
